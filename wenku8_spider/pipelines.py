@@ -4,11 +4,10 @@
 # See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 
 import os
-from urllib.parse import urlparse
 import scrapy
 from scrapy.utils.python import to_bytes
 import hashlib
-from b2sdk.v1 import B2Api, UploadSourceBytes
+from b2sdk.v1 import B2Api
 from wenku8_spider.credentials import *
 from twisted.internet.defer import Deferred
 
@@ -39,7 +38,8 @@ class FilesUploadingPipeline:
             file_id = hashlib.sha1(
                 to_bytes(response.request.url)).hexdigest()
             file_path = B2_PATH + file_id
-            self.bucket.upload(UploadSourceBytes(response.body), file_path)
+            self.bucket.upload_bytes(
+                response.body, file_name=file_path, content_type='text/plain')
             item['content_url'] = B2_ENDPOINT + B2_BUCKET + '/' + file_path
             deferred.callback(item)
         return helper
