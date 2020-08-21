@@ -50,7 +50,7 @@ class Wenku8Spider(scrapy.Spider):
             item['last_update'] = response.css(
                 '#content>div>table:nth-child(1) tr:nth-child(2) td:nth-child(4) ::text').extract_first().split('：')[1]
             book_id = item['book_id']
-            item['content_url'] = f'http://dl.wenku8.com/down.php?type=big5&id={book_id}'
+            item['content_original_url'] = f'http://dl.wenku8.com/down.php?type=big5&id={book_id}'
             yield item
         except:
             pass

@@ -7,6 +7,7 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+from wenku8_spider.credentials import *
 import pkgutil
 import os
 
@@ -65,9 +66,10 @@ ROBOTSTXT_OBEY = False
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-# ITEM_PIPELINES = {
-#    'wenku8_spider.pipelines.Wenku8SpiderPipeline': 300,
-# }
+ITEM_PIPELINES = {
+    'wenku8_spider.pipelines.FilesUploadingPipeline': 1,
+}
+MEDIA_ALLOW_REDIRECTS = True
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

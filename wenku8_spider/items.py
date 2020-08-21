@@ -11,5 +11,6 @@ class BookItem(scrapy.Item):
     title = scrapy.Field()
     author = scrapy.Field()
     last_update = scrapy.Field()
+    content_original_url = scrapy.Field()
     content_url = scrapy.Field()
     pass
