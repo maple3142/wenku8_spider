@@ -1,0 +1,7 @@
+cookies.json
+*.egg-info
+build
+scrapinghub.yml
+*.pyc
+.env
+credentials.py
