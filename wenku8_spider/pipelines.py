@@ -40,6 +40,6 @@ class FilesUploadingPipeline:
             file_path = B2_PATH + file_id
             self.bucket.upload_bytes(
                 response.body, file_name=file_path, content_type='text/plain')
-            item['content_url'] = B2_ENDPOINT + B2_BUCKET + '/' + file_path
+            item['content_path'] = B2_BUCKET + '/' + file_path
             deferred.callback(item)
         return helper
